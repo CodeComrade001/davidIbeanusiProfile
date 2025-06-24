@@ -99,7 +99,8 @@ img {
 /*===== LAYOUT =====*/
 .bd-grid {
   max-width: 1024px;
-  display: grid;
+  display: flex;
+  gap:10px;
   margin-left: var(--mb-2);
   margin-right: var(--mb-2);
 }
@@ -396,6 +397,7 @@ img {
 }
 
 /* ===== CONTACT =====*/
+
 .contact__input {
   width: 100%;
   font-size: var(--normal-font-size);
