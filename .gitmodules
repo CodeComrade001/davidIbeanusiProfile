@@ -1,0 +1,3 @@
+[submodule "Cyfnix/SimpleStorage/lib/forge-std"]
+	path = Cyfnix/SimpleStorage/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
