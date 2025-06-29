@@ -4,7 +4,6 @@ import {
   Folder,
   MoreHorizontal,
   Share,
-  Trash2,
   type LucideIcon,
 } from "lucide-react"
 
@@ -12,12 +11,10 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuAction,
   SidebarMenuButton,
@@ -26,9 +23,11 @@ import {
 } from "@/components/ui/sidebar"
 
 export function NavProjects({
-  projects,
+  nameGrouping,
+  nameGroupingItems,
 }: {
-  projects: {
+  nameGrouping: string,
+  nameGroupingItems: {
     name: string
     url: string
     icon: LucideIcon
@@ -38,9 +37,12 @@ export function NavProjects({
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <div className="inline-block bg-gradient-to-r h-auto w-auto from-sky-400 to-emerald-600 text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition-opacity">
+        {/* <SidebarGroupLabel>{nameGrouping}</SidebarGroupLabel> */}
+        {nameGrouping}
+      </div>
       <SidebarMenu>
-        {projects.map((item) => (
+        {nameGroupingItems.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
@@ -48,7 +50,7 @@ export function NavProjects({
                 <span>{item.name}</span>
               </a>
             </SidebarMenuButton>
-            <DropdownMenu>
+            {(nameGrouping !== "Dashboard") && (<DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuAction showOnHover>
                   <MoreHorizontal />
@@ -68,21 +70,18 @@ export function NavProjects({
                   <Share className="text-muted-foreground" />
                   <span>Share Project</span>
                 </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Trash2 className="text-muted-foreground" />
-                  <span>Delete Project</span>
-                </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu>)
+            }
+
           </SidebarMenuItem>
         ))}
-        <SidebarMenuItem>
+        {/* <SidebarMenuItem>
           <SidebarMenuButton>
             <MoreHorizontal />
             <span>More</span>
           </SidebarMenuButton>
-        </SidebarMenuItem>
+        </SidebarMenuItem> */}
       </SidebarMenu>
     </SidebarGroup>
   )
